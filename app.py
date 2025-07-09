@@ -89,7 +89,7 @@ if uploaded_files:
     st.dataframe(agg)
     fig3 = px.bar(agg, x='대학', y='합격률', color='년도', barmode='group', title="합격률 비교")
     st.plotly_chart(fig3, use_container_width=True)
-    fig4 = px.line(agg, x='대학', y='평균성적', color='년도', markers=True, title="대학별 평균 성적 추이")
+    fig4 = px.scatter(agg, x='대학', y='평균성적', color='년도', title="대학별 평균 성적 추이")
     st.plotly_chart(fig4, use_container_width=True)
 
     st.subheader("과목별 성적 분포 비교")
@@ -114,5 +114,5 @@ if uploaded_files:
         mean_df = filtered_data.copy()
         mean_df[subject] = pd.to_numeric(mean_df[subject], errors='coerce')
         mean_agg = mean_df.groupby(['년도', '대학'])[subject].mean().reset_index()
-        fig_avg = px.line(mean_agg, x='대학', y=subject, color='년도', markers=True, title=f"{subject} 평균 성적 추이")
+        fig_avg = px.scatter(mean_agg, x='대학', y=subject, color='년도', title=f"{subject} 평균 성적 추이")
         st.plotly_chart(fig_avg, use_container_width=True)
