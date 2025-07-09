@@ -55,13 +55,15 @@ if uploaded_files:
 
     if '지역' in filtered_data.columns:
         지역_list = sorted(filtered_data['지역'].dropna().unique())
-        선택_지역 = st.multiselect("지역 선택 (선택하지 않으면 전체)", 지역_list, default=지역_list)
+        선택_지역 = st.selectbox("지역 선택 (단일 선택)", options=['전체'] + 지역_list, index=0)
+        if 선택_지역 != '전체':
+            filtered_data = filtered_data[filtered_data['지역'] == 선택_지역]
         filtered_data = filtered_data[filtered_data['지역'].isin(선택_지역)]
 
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("\ud569\uaca9\uc0ac \uc804\uacfc\ubaa9 \uc2dc\uac01\ud654")
+        st.subheader("합격자 \uc804\uacfc\ubaa9 \uc2dc\uac01\ud654")
         pass_df = filtered_data[filtered_data['최종'] == '합']
         if not pass_df.empty:
             fig1 = px.box(pass_df, x='대학', y='전과목', color='년도', points='all')
@@ -70,7 +72,7 @@ if uploaded_files:
             st.info("\ud569\uaca9\uc0ac \ub370\uc774\ud130\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.")
 
     with col2:
-        st.subheader("\ubd88\ud569\uaca9\uc0ac \uc804\uacfc\ubaa9 \uc2dc\uac01\ud654")
+        st.subheader("불합격자 \uc804\uacfc\ubaa9 \uc2dc\uac01\ud654")
         fail_df = filtered_data[filtered_data['최종'] == '불']
         if not fail_df.empty:
             fig2 = px.box(fail_df, x='대학', y='전과목', color='년도', points='all')
