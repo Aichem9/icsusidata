@@ -59,7 +59,7 @@ if uploaded_files:
         선택_지역 = st.selectbox("지역 선택 (단일 선택)", options=['전체'] + 지역_list, index=0)
         if 선택_지역 != '전체':
             filtered_data = filtered_data[filtered_data['지역'] == 선택_지역]
-        filtered_data = filtered_data[filtered_data['지역'].isin(선택_지역)]
+        
 
     col1, col2 = st.columns(2)
 
