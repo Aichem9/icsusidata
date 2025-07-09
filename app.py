@@ -53,6 +53,11 @@ if uploaded_files:
         선택_계열 = st.multiselect("계열 선택 (선택하지 않으면 전체)", 계열_list, default=계열_list)
         filtered_data = filtered_data[filtered_data['계열'].isin(선택_계열)]
 
+    if '지역' in filtered_data.columns:
+        지역_list = sorted(filtered_data['지역'].dropna().unique())
+        선택_지역 = st.multiselect("지역 선택 (선택하지 않으면 전체)", 지역_list, default=지역_list)
+        filtered_data = filtered_data[filtered_data['지역'].isin(선택_지역)]
+
     col1, col2 = st.columns(2)
 
     with col1:
