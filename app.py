@@ -2,8 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(page_title="수시 전형 결과 시각화", layout="wide")
-st.title("\ud559\ubc8c\ubcc0 \ub300\ud559 \uc218\uc2dc \uacb0\uacfc \uc2dc\uac01\ud654")
+st.set_page_config(page_title="인창고 수시 합격자 시각화 시스템")
+st.title("인창고 수시 합격자 시각화 시스템")
+st.markdown("**작성자: aichem9**")
 
 uploaded_files = st.file_uploader("\ud30c\uc77c\uc744 \uc5ec\ub7ec \uac1c \uc5c5\ub85c\ub4dc\ud574\uc8fc\uc138\uc694 (.xlsx)", type=["xlsx"], accept_multiple_files=True)
 
