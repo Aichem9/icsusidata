@@ -68,7 +68,7 @@ if uploaded_files:
         pass_df = filtered_data[filtered_data['최종'] == '합']
         if not pass_df.empty:
             fig1 = px.box(pass_df, x='대학', y='전과목', color='년도', points='all')
-            st.plotly_chart(fig1, use_container_width=True)
+            st.plotly_chart(fig1, use_container_width=True, config={"autosize": True})
         else:
             st.info("\ud569\uaca9\uc0ac \ub370\uc774\ud130\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.")
 
@@ -77,7 +77,7 @@ if uploaded_files:
         fail_df = filtered_data[filtered_data['최종'] == '불']
         if not fail_df.empty:
             fig2 = px.box(fail_df, x='대학', y='전과목', color='년도', points='all')
-            st.plotly_chart(fig2, use_container_width=True)
+            st.plotly_chart(fig2, use_container_width=True, config={"autosize": True})
         else:
             st.info("\ubd88\ud569\uaca9\uc0ac \ub370\uc774\ud130\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.")
 
@@ -88,9 +88,9 @@ if uploaded_files:
     agg = filtered_data.groupby(['년도', '대학']).agg(합격률=('최종', lambda x: (x == '합').mean() * 100), 평균성적=('전과목', 'mean')).reset_index()
     st.dataframe(agg)
     fig3 = px.bar(agg, x='대학', y='합격률', color='년도', barmode='group', title="합격률 비교")
-    st.plotly_chart(fig3, use_container_width=True)
+    st.plotly_chart(fig3, use_container_width=True, config={"autosize": True})
     fig4 = px.scatter(agg, x='대학', y='평균성적', color='년도', title="대학별 평균 성적 추이")
-    st.plotly_chart(fig4, use_container_width=True)
+    st.plotly_chart(fig4, use_container_width=True, config={"autosize": True})
 
     st.subheader("과목별 성적 분포 비교")
     과목들 = ['국수영사', '국수영과']
